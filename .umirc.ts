@@ -7,7 +7,7 @@ export default defineConfig({
     {
       name: '空白页面',
       path: '/web3',
-      component: './Web3',
+      component: '@/pages/Web3',
     },
     {
       path: '/',
