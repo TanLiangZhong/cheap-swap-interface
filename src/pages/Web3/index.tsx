@@ -4,6 +4,8 @@ import { Button } from 'antd';
 import styles from './index.less';
 import Web3 from 'web3';
 
+import StorageAbi from '../../abi/StorageAbi.json';
+
 // @ts-ignore
 const { ethereum } = window;
 let _web3: any = null;
@@ -51,6 +53,29 @@ export default () => {
     window.location.reload();
   });
 
+  const test = () => {
+    const storageContract = new _web3.eth.Contract(
+      StorageAbi,
+      '0xC0F39204d2ea2D8AFacCdB429b471768709475eb',
+    );
+
+    // send 改变合约状态, 用于写入数据
+    storageContract.methods
+      .store(777)
+      .send({ from: address })
+      .then((r: any) => {
+        console.log('store', r);
+      });
+
+    // call 调用方式无法改变智能合约状态, 用于读取数据
+    storageContract.methods
+      .retrieve()
+      .call()
+      .then((r: any) => {
+        console.log('retrieve', r);
+      });
+  };
+
   useEffect(() => {
     // useEffect Hook 看做 componentDidMount，componentDidUpdate 和 componentWillUnmount 这三个函数的组合
   }, []);
@@ -66,6 +91,9 @@ export default () => {
         </Button>
         <Button type="primary" onClick={getBalance}>
           Balance
+        </Button>
+        <Button type="primary" onClick={test}>
+          Test
         </Button>
       </div>
     </PageContainer>
