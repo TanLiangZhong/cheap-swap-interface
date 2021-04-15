@@ -1,20 +1,14 @@
 body {
   min-height: 100vh;
-  background-image: radial-gradient(
-    50% 50% at 50% 50%,
-    rgba(255, 0, 122, 0.1) 0%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background-image: radial-gradient(50% 50% at 50% 50%, rgba(255, 0, 122, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
   background-repeat: no-repeat;
   background-position: 0 -30vh;
 }
-
 .ant-layout,
 .ant-pro-global-header,
 .ant-pro-basicLayout .ant-layout-header.ant-pro-fixed-header {
   background: transparent;
 }
-
 .ant-layout-header {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }

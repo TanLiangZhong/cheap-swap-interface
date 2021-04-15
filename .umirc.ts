@@ -21,5 +21,18 @@ export default defineConfig({
     },
   ],
   fastRefresh: {},
+  alias: { '@': '/src' },
+  antd: {},
+  layout: {
+    locale: true,
+    menuRender: false,
+  },
+  locale: {
+    default: 'zh-CN',
+    antd: false,
+    title: false,
+    baseNavigator: true,
+    baseSeparator: '-',
+  },
   mock: false,
 });
