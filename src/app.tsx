@@ -7,35 +7,22 @@ import { history } from 'umi';
 import HeaderContent from '@/components/HeaderContent';
 import RightContent from '@/components/RightContent';
 
-export async function getInitialState() {
-  // const data = await fetchXXX();
-  return { currentUser: { name: 'xxx' } };
-}
-
 export const layout = ({
   initialState,
 }: {
-  initialState: { settings?: LayoutSettings; currentUser?: API.CurrentUser };
+  initialState: { settings?: LayoutSettings };
 }): BasicLayoutProps => {
   return {
     rightContentRender: () => <RightContent />,
     // footerRender: () => <Footer />,
     headerContentRender: () => <HeaderContent />,
     headerHeight: 72,
-    onPageChange: () => {
-      const { currentUser } = initialState;
-      const { location } = history;
-      // 如果没有登录，重定向到 login
-      if (!currentUser && location.pathname !== '/user/login') {
-        history.push('/user/login');
-      }
-    },
     menuHeaderRender: undefined,
     ...initialState?.settings,
   };
 };
 
-export function render(oldRender) {
+export function render(oldRender: Function) {
   if (!/windows phone|iphone|android/gi.test(window.navigator.userAgent)) {
     // PC
     history.push(location.pathname.replace(/\/m/gi, ''));

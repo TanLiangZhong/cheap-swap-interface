@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Button } from 'antd';
 import styles from './index.less';
 import Web3 from 'web3';
+import { connect } from 'umi';
 
 import StorageAbi from '../../abi/StorageAbi.json';
 
@@ -61,7 +62,7 @@ export default () => {
 
     // send 改变合约状态, 用于写入数据
     storageContract.methods
-      .store(777)
+      .store(999)
       .send({ from: address })
       .then((r: any) => {
         console.log('store', r);
@@ -77,6 +78,13 @@ export default () => {
   };
 
   useEffect(() => {
+    // @ts-ignore
+    /*connect( (mapStateToProps,     mapDispatchToProps,     mergeProps,     options) =>{
+      console.log(mapStateToProps)
+      console.log(mapDispatchToProps)
+      console.log(mergeProps)
+      console.log(options)
+    } )*/
     // useEffect Hook 看做 componentDidMount，componentDidUpdate 和 componentWillUnmount 这三个函数的组合
   }, []);
 
